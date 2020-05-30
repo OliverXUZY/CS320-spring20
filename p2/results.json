@@ -1,0 +1,73 @@
+{
+  "score": 90.0,
+  "tests": [
+    {
+      "test": "has_classes",
+      "points": 8,
+      "possible": 8
+    },
+    {
+      "test": "service_ids",
+      "points": 20,
+      "possible": 20
+    },
+    {
+      "test": "get_trips",
+      "points": 8,
+      "possible": 8
+    },
+    {
+      "test": "get_trips_by_route",
+      "points": 10,
+      "possible": 10
+    },
+    {
+      "test": "get_stops",
+      "points": 8,
+      "possible": 8
+    },
+    {
+      "test": "get_stops_rect",
+      "points": 10,
+      "possible": 10
+    },
+    {
+      "test": "get_stops_circ",
+      "points": 10,
+      "possible": 10
+    },
+    {
+      "test": "scatter_stops",
+      "points": 12,
+      "possible": 20,
+      "log": [
+        "========================================",
+        "TEST scatter_stops (20)",
+        "distribution of scatter points red-x not correct: expected 1542 points but found 0 points",
+        "distribution of scatter points red-y not correct: expected 1542 points but found 0 points",
+        "distribution of scatter points gray-x not correct: expected 559 points but found 0 points",
+        "distribution of scatter points gray-y not correct: expected 559 points but found 0 points",
+        "distribution of scatter points red-x not correct: expected 1164 points but found 0 points",
+        "distribution of scatter points red-y not correct: expected 1164 points but found 0 points",
+        "distribution of scatter points gray-x not correct: expected 239 points but found 0 points",
+        "distribution of scatter points gray-y not correct: expected 239 points but found 0 points",
+        ""
+      ]
+    },
+    {
+      "test": "draw_tree",
+      "points": 4,
+      "possible": 6,
+      "log": [
+        "========================================",
+        "TEST draw_tree (6)",
+        "vertical lines not correctly placed: expected 21 points but found 85 points",
+        "vertical lines not correctly placed: expected 21 points but found 85 points",
+        ""
+      ]
+    }
+  ],
+  "lint": [],
+  "date": "05/29/2020",
+  "latency": 5.491011142730713
+}
