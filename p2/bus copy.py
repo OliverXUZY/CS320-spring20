@@ -134,31 +134,12 @@ class BusDay:
         center = Location(xy = loc)
         return [stop for stop in rec if center.dist(stop.location_object) <= radius]
     
-    
     def scatter_stops(self, ax):
         stop_df = pd.DataFrame(list(map(lambda item: [item.location_object.x, item.location_object.y, item.wheelchair_boarding],self.get_stops())),
              columns = ['x','y','wheelchair'])
+        stop_df[stop_df['wheelchair']].plot.scatter(x = 'x',y = 'y',marker="o", c = 'red', ax = ax, s=2)
+        stop_df[~stop_df['wheelchair']].plot.scatter(x = 'x',y = 'y',marker="o", c = '0.7', ax = ax, s=2)
         
-        stop_df[stop_df['wheelchair']].plot.scatter(x = 'x',y = 'y',marker="o", color = 'red', ax = ax, s=3)
-        stop_df[~stop_df['wheelchair']].plot.scatter(x = 'x',y = 'y',marker="o", color = '0.7', ax = ax, s=3)
-        
-    
-    
-    '''
-    def scatter_stops(self, ax):
-        df = pd.DataFrame({
-            "x": [stop.location_object.x for stop in self.get_stops()],
-            "y": [stop.location_object.y for stop in self.get_stops()],
-            "w": [stop.wheelchair_boarding for stop in self.get_stops()],
-        })
-        
-        df[df["w"]].plot.scatter(x="x", y="y", ax=ax, marker="o", s=3, color="red")
-        df[~df["w"]].plot.scatter(x="x", y="y", ax=ax, marker="o", s=3, color="0.7")
-        ax.set_xlabel("")
-        ax.set_ylabel("")
-        
-    '''
-    
     def draw_tree(self, ax):
         stops = self.get_stops()
         BSTree = Node(stops)
@@ -196,7 +177,7 @@ class Node:
         else:
             stop_list.sort(key = lambda stop_obj: stop_obj.location_object.y)
             self.split_val = stop_list[len(stop_list)//2].location_object.y
-        if levels <= 5:                                                          ### final problem
+        if levels <= 6:
             #print(stop_list[:len(stop_list)//2],len(stop_list)//2)
             self.left = Node(stop_list[:len(stop_list)//2],  -ver_split, levels + 1)
             self.right = Node(stop_list[len(stop_list)//2:],  -ver_split, levels + 1)  
@@ -240,7 +221,6 @@ class Node:
                 self.right.range_search(xlim, ylim, results)
         return results
     
-    
     def draw_tree(self, ax, lw = 10, xlim = None, ylim = None):
         if self.leaf == True:
             return
@@ -264,5 +244,4 @@ class Node:
             self.left.draw_tree(ax, lw = lw/2, xlim = xlim,ylim = (ylim_left,ylim_mid))
             self.right.draw_tree(ax, lw = lw/2, xlim = xlim,ylim = (ylim_mid,ylim_right))
             ax.plot(xlim,(self.split_val,self.split_val),lw = lw, color="purple", zorder=-10)
-
-      
+        
